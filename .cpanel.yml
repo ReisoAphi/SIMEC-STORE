@@ -1,0 +1,16 @@
+---
+# SIMEC Store — manifiesto de deploy para cPanel Git Version Control.
+# Se ejecuta cada vez que le das "Update from Remote" al repo en cPanel
+# (o cuando llega un webhook de push).
+#
+# Ajusta las dos variables si tu instalación difiere:
+#  - DEPLOYPATH: ruta absoluta donde clonaste el repo
+#  - NODE_VENV: virtualenv creado por "Setup Node.js App"
+#      normalmente: /home/<cpanel-user>/nodevenv/<app-name-lower>/<node-mayor>
+#      revísalo en cPanel → Setup Node.js App → tu app → "Detected configuration"
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/aphisof3/SIMEC-STORE
+    - export NODE_VENV=/home/aphisof3/nodevenv/simec-store/22
+    - /bin/bash -c "if [ -f $NODE_VENV/bin/activate ]; then source $NODE_VENV/bin/activate; fi; cd $DEPLOYPATH && npm install --no-audit --no-fund --omit=dev"
+    - mkdir -p $DEPLOYPATH/tmp && touch $DEPLOYPATH/tmp/restart.txt
