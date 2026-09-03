@@ -1,0 +1,28 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno y credenciales
+.env
+.env.local
+.env.*.local
+config/local.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# Uploads
+public/uploads/
+uploads_tmp/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Claude
+.claude/
